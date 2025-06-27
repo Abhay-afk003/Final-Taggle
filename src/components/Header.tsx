@@ -23,7 +23,7 @@ const Header: React.FC = () => {
   }, [menuOpen]);
 
   return (
-    <header className="w-full z-50 bg-transparent relative">
+    <header className="w-full z-50 bg-transparent relative flex justify-end">
       <div className="header-container">
         {/* Left Section - Logo */}
         <div className="header-logo">
@@ -71,20 +71,22 @@ const Header: React.FC = () => {
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="header-mobile-toggle"
-          onClick={() => setMenuOpen(true)}
-          aria-label="Open navigation menu"
-          type="button"
-        >
-          <Menu className="w-6 h-6" />
-        </button>
+        {/* Mobile Menu Button (Aligned to the right) */}
+ <div className="flex items-center justify-end flex-grow md:hidden">
+          <button
+            className="header-mobile-toggle"
+ onClick={() => setMenuOpen(true)}
+            aria-label="Open navigation menu"
+            type="button"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+ </div>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {menuOpen && (
+        {menuOpen && ( 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

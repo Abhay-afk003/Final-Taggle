@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAJe6o_K5ZiXSgBO-uIaMSqLXkhTjIZilU",
@@ -11,19 +11,7 @@ const firebaseConfig = {
   measurementId: "G-341VZGGHV4"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// Initialize Firestore
-export const db = getFirestore(app);
-
-// Connect to emulator in development (optional)
-if (import.meta.env.DEV && !import.meta.env.VITE_USE_PROD_FIREBASE) {
-  try {
-    connectFirestoreEmulator(db, 'localhost', 8080);
-  } catch (error) {
-    console.log('Firestore emulator already connected or not available');
-  }
-}
-
-export default app;
+export { db };

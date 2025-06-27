@@ -30,7 +30,7 @@ const CtaSection: React.FC = () => {
           </button>
           
           <p className="text-gray-400 text-sm mt-4">
-            ✨ No spam, no commitments, just results
+            ✨ No spam, no exports, just results
           </p>
         </div>
       </div>

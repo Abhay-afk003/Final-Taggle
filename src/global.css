@@ -118,7 +118,7 @@
 .header-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 24px;
   padding: 16px 24px;
@@ -142,7 +142,7 @@
 .header-nav {
   display: none;
   justify-self: center;
-  align-items: center;
+  align-items: center; /* Kept for desktop alignment */
 }
 
 .header-nav-links {
@@ -183,7 +183,7 @@
 .header-cta {
   display: none;
   justify-self: flex-end;
-  align-items: center;
+  align-items: center; /* Kept for desktop alignment */
 }
 
 .header-cta-button {
@@ -199,7 +199,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  justify-self: flex-end;
   background: none;
   border: none;
   color: white;
@@ -1034,6 +1033,8 @@ button, a, input[type="submit"], input[type="button"] {
     font-display: swap;
     font-weight: 400;
     line-height: 1.6;
+ background: linear-gradient(to bottom, #0a0a0a, #000000);
+ background-repeat: no-repeat;
     letter-spacing: -0.01em;
   }
   

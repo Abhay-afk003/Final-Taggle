@@ -9,12 +9,9 @@ const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         position="top-right"
         reverseOrder={false}
         gutter={8}
-        containerClassName=""
-        containerStyle={{}}
         toastOptions={{
-          // Define default options
-          className: '',
           duration: 4000,
+          className: '',
           style: {
             background: 'rgba(17, 24, 39, 0.95)',
             color: '#fff',
@@ -23,39 +20,52 @@ const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             borderRadius: '12px',
             padding: '16px',
             fontSize: '14px',
-            fontWeight: '500',
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            fontWeight: 500,
+            boxShadow:
+              '0 0 0 1px rgba(255,255,255,0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1)',
           },
-          
-          // Success toast styling
+
+          // Success styling (PURPLE glow)
           success: {
             duration: 5000,
             style: {
-              background: 'rgba(16, 185, 129, 0.1)',
-              border: '1px solid rgba(16, 185, 129, 0.3)',
-              color: '#10b981',
+              background: 'linear-gradient(90deg, rgba(39, 0, 75, 0.8), rgba(168, 85, 247, 0.6))',
+              backdropFilter: 'blur(14px)',
+              border: '1px solid rgba(168, 85, 247, 0.4)',
+              color: '#c084fc',
+              borderRadius: '16px',
+              padding: '16px',
+              fontSize: '14px',
+              fontWeight: 500,
+              boxShadow: '0 0 24px rgba(168, 85, 247, 0.5), 0 4px 6px rgba(0,0,0,0.1)',
             },
             iconTheme: {
-              primary: '#10b981',
-              secondary: 'rgba(16, 185, 129, 0.1)',
+              primary: '#c084fc',
+              secondary: 'rgba(168, 85, 247, 0.2)',
             },
           },
-          
-          // Error toast styling
+
+          // Error styling (RED glow)
           error: {
             duration: 6000,
             style: {
-              background: 'rgba(239, 68, 68, 0.1)',
-              border: '1px solid rgba(239, 68, 68, 0.3)',
-              color: '#ef4444',
+              background: 'linear-gradient(90deg, rgba(75, 0, 0, 0.8), rgba(239, 68, 68, 0.6))',
+              backdropFilter: 'blur(14px)',
+              border: '1px solid rgba(239, 68, 68, 0.4)',
+              color: '#f87171',
+              borderRadius: '16px',
+              padding: '16px',
+              fontSize: '14px',
+              fontWeight: 500,
+              boxShadow: '0 0 24px rgba(239, 68, 68, 0.4), 0 4px 6px rgba(0,0,0,0.1)',
             },
             iconTheme: {
-              primary: '#ef4444',
-              secondary: 'rgba(239, 68, 68, 0.1)',
+              primary: '#f87171',
+              secondary: 'rgba(239, 68, 68, 0.2)',
             },
           },
-          
-          // Loading toast styling
+
+          // Loading styling
           loading: {
             style: {
               background: 'rgba(139, 92, 246, 0.1)',

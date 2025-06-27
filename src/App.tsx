@@ -8,6 +8,7 @@ import CtaSection from './components/CtaSection';
 import Footer from './components/Footer';
 import './global.css';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 function App() {
   const termsAndConditionsText = `

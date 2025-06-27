@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import { motion } from 'framer-motion';
-import { Twitter, Linkedin } from 'lucide-react';
+import React, { FC } from "react";
+import { motion } from "framer-motion";
+import { Twitter, Linkedin } from "lucide-react";
 
 interface FooterProps {
   onShowPrivacy: () => void;
@@ -17,7 +17,7 @@ const Footer: FC<FooterProps> = ({ onShowPrivacy, onShowTerms }) => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative z-10 max-w-7xl mx-auto"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
@@ -29,9 +29,7 @@ const Footer: FC<FooterProps> = ({ onShowPrivacy, onShowTerms }) => {
                 alt="logo"
                 className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
               />
-              <span className="ml-0 text-lg sm:text-xl font-heading text-white">
-                aggle
-              </span>
+              <span className="ml-0 text-lg sm:text-xl font-heading text-white">aggle</span>
             </div>
             <p className="text-white/70 mb-4 sm:mb-6 max-w-sm text-sm sm:text-base leading-relaxed">
               Done chasing leads? We'll send qualified ones right to your inbox.
@@ -39,21 +37,21 @@ const Footer: FC<FooterProps> = ({ onShowPrivacy, onShowTerms }) => {
             <div className="flex space-x-3">
               <a
                 href="https://x.com/Taggle003?t=Y22m6F_aT2Ndendy6ZHt8w&s=08"
-                className="p-2 rounded-md bg-surface-medium hover:bg-surface-dark transition"
+                className="w-10 h-10 flex items-center justify-center rounded-md bg-surface-medium hover:bg-surface-dark transition"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
               >
-                <Twitter className="w-4 h-4 sm:w-5 sm:h-5 text-white/70 hover:text-white" />
+                <Twitter className="w-5 h-5 text-white/80 hover:text-white transition" />
               </a>
               <a
                 href="https://www.linkedin.com/company/taggle003/"
-                className="p-2 rounded-md bg-surface-medium hover:bg-surface-dark transition"
+                className="w-10 h-10 flex items-center justify-center rounded-md bg-surface-medium hover:bg-surface-dark transition"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-white/70 hover:text-white" />
+                <Linkedin className="w-5 h-5 text-white/80 hover:text-white transition" />
               </a>
             </div>
           </div>
@@ -64,7 +62,7 @@ const Footer: FC<FooterProps> = ({ onShowPrivacy, onShowTerms }) => {
               Quick Links
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-3 sm:gap-y-4">
-              {['Home', 'Features', 'Pricing'].map((link, i) => (
+              {["Home", "Features", "Pricing"].map((link, i) => (
                 <a
                   key={i}
                   href={`#${link.toLowerCase()}`}
@@ -83,8 +81,8 @@ const Footer: FC<FooterProps> = ({ onShowPrivacy, onShowTerms }) => {
             © 2025 Taggle. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-            {['Privacy Policy', 'Terms of Service'].map((text) => {
-              const isPrivacy = text === 'Privacy Policy';
+            {["Privacy Policy", "Terms of Service"].map((text) => {
+              const isPrivacy = text === "Privacy Policy";
               return (
                 <button
                   key={text}
