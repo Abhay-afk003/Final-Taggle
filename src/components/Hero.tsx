@@ -86,7 +86,7 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
           <div className="mb-8 sm:mb-12">
             <div className="text-container hero-text">
               <h1 className="hero-line text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white">
-                Only Talk to those
+                Talk only to those
               </h1>
 
               <h1 className="hero-line text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
