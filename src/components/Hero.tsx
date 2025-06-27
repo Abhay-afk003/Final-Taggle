@@ -143,7 +143,7 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
           {/* Social Proof */}
           <div className="flex flex-col items-center gap-4 sm:gap-6 px-4">
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <div className="flex -space-x-2">
+              <div className="flex -space-x-1">
                 {[1, 2, 3, 4, 5].map((num) => (
                   <picture key={num}>
                     <source
