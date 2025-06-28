@@ -8,7 +8,7 @@ interface HeroProps {
   children?: React.ReactNode;
 }
 
-const BASE_WAITLIST_COUNT = 0; // You can adjust this base number
+const BASE_WAITLIST_COUNT = 49; // You can adjust this base number
 
 const Hero: React.FC<HeroProps> = ({ children }) => {
  const [email, setEmail] = useState('');
@@ -39,7 +39,7 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
     const count = await getWaitlistCount();
  setWaitlistCount(count);
  setRemainingSpots(Math.max(0, ADOPTER_LIMIT - (count - BASE_WAITLIST_COUNT))); // Calculate remaining spots, ensuring it doesn't go below 0
- console.log('Fetched waitlist count:', count); // Log fetched count
+ setRemainingSpots(Math.max(0, ADOPTER_LIMIT - count)); // Calculate remaining spots based on total count
   };
 
 
