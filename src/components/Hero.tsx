@@ -8,12 +8,14 @@ interface HeroProps {
   children?: React.ReactNode;
 }
 
-const BASE_WAITLIST_COUNT = 10; // You can adjust this base number
+const BASE_WAITLIST_COUNT = 0; // You can adjust this base number
 
 const Hero: React.FC<HeroProps> = ({ children }) => {
-  const [email, setEmail] = useState('');
-  const [waitlistCount, setWaitlistCount] = useState(BASE_WAITLIST_COUNT);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+ const [email, setEmail] = useState('');
+ const [waitlistCount, setWaitlistCount] = useState(0); // Initialize to 0 as we'll fetch from DB
+ const [remainingSpots, setRemainingSpots] = useState(87); // State for the 100 adopter spots
+ const [isSubmitting, setIsSubmitting] = useState(false);
+ const ADOPTER_LIMIT = 100; // Define the limit for early adopters
 
   // Function to fetch waitlist count from Firestore
   const getWaitlistCount = async (): Promise<number> => {
@@ -35,42 +37,48 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
 
   const fetchCount = async () => {
     const count = await getWaitlistCount();
-    setWaitlistCount(count);
+ setWaitlistCount(count);
+ setRemainingSpots(Math.max(0, ADOPTER_LIMIT - (count - BASE_WAITLIST_COUNT))); // Calculate remaining spots, ensuring it doesn't go below 0
+ console.log('Fetched waitlist count:', count); // Log fetched count
   };
 
 
   const handleWaitlistSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     if (!email.trim()) {
-      toast.error('Please enter your email address.'); // Added a toast for empty email
+      toast.error('Please enter your email.');
       return;
-    }
+    }  
 
     setIsSubmitting(true);
 
     try {
-      // Check if email already exists
+      console.log('Attempting waitlist signup with:', { email: email.trim() });
+    
+      // Check if email already exists in waitlist
       const q = query(collection(db, "waitlist"), where("email", "==", email.trim()));
       const querySnapshot = await getDocs(q);
-
+    
       if (!querySnapshot.empty) {
         toast.error('You are already on the waitlist!');
       } else {
         // Add email to Firestore
         await addDoc(collection(db, "waitlist"), {
           email: email.trim(),
-          timestamp: new Date(),
+          timestamp: new Date()
         });
-        toast.success('Successfully joined the waitlist!');
-        setEmail(''); // Clear the input
-        setWaitlistCount((prev) => prev + 1); // Update count
+ toast.success('Successfully joined the waitlist! You\'ll get a 14-day free trial at launch.');
       }
+      setEmail(''); // Clear email input
+      // In a real app, you'd redirect the user or update UI to show trial status
+
     } catch (error) {
-      console.error('Error joining waitlist:', error);
-      toast.error('Failed to join waitlist. Please try again.');
+      console.error('Waitlist signup error:', error);
+      toast.error('Failed to sign up for free trial. Please try again.');
     } finally {
-      setIsSubmitting(false);
+        setIsSubmitting(false);
+        fetchCount(); // Update count after submission
     }
   };
 
@@ -82,6 +90,13 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
       {/* Content */}
       <div className="w-full max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8">
         <div className="hero-content">
+          {/* Limited Offer Message */}
+          <div class="lifetime-access-message">
+          <span className="message-text">
+          Early {ADOPTER_LIMIT} adopters get lifetime access to all features! ({remainingSpots} spots left)
+          </span>
+        </div>
+
           {/* Main Headline */}
           <div className="mb-8 sm:mb-12">
             <div className="text-container hero-text">
@@ -106,17 +121,16 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
           <form
             onSubmit={handleWaitlistSubmit}
             id="waitlist-section"
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 max-w-lg mx-auto px-4"
-          >
-            <div className="relative w-full sm:flex-1">
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 max-w-lg mx-auto px-4">
+            <div className="relative w-full">
               <input
                 type="email"
                 placeholder="Enter your email"
                 className="hero-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={isSubmitting}
-                required
+                disabled={isSubmitting} 
+                required={true}
                 style={{ fontSize: '16px' }}
                 autoComplete="email"
                 autoCapitalize="none"
@@ -127,7 +141,8 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
             <button
               type="submit"
               className="gradient-button"
-              disabled={isSubmitting || !email.trim()}
+              disabled={isSubmitting || !email.trim()} 
+              style={{ fontSize: '16px' }}
             >
               {isSubmitting ? (
                 <>
@@ -138,7 +153,7 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
                 'Join Waitlist'
               )}
             </button>
-          </form>
+         </form>
 
           {/* Social Proof */}
           <div className="flex flex-col items-center gap-4 sm:gap-6 px-4">
@@ -171,7 +186,7 @@ const Hero: React.FC<HeroProps> = ({ children }) => {
 
             <div className="flex items-center gap-2 text-green-400">
               <CheckCircle className="w-4 h-4" />
-              <span className="text-xs sm:text-sm">No spam, just quality updates</span>
+              <span className="text-xs sm:text-sm">Enjoy a 14-day free trial</span>
             </div>
           </div>
         </div>

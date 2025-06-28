@@ -296,15 +296,15 @@
     padding: 16px 32px;
     gap: 32px;
   }
-  
+
   .header-nav {
     display: flex;
   }
-  
+
   .header-cta {
     display: flex;
   }
-  
+
   .header-mobile-toggle {
     display: none;
   }
@@ -317,15 +317,15 @@
     gap: 40px;
     min-height: 76px;
   }
-  
+
   .header-nav-links {
     gap: 40px;
   }
-  
+
   .header-nav-link {
     font-size: 16px;
   }
-  
+
   .header-cta-button {
     font-size: 16px;
     padding: 12px 24px;
@@ -337,15 +337,15 @@
   .header-container {
     padding: 16px 24px;
   }
-  
+
   .header-nav-links {
     gap: 24px;
   }
-  
+
   .header-nav-link {
     font-size: 14px;
   }
-  
+
   .header-cta-button {
     font-size: 14px;
     padding: 10px 18px;
@@ -359,20 +359,20 @@
     gap: 16px;
     min-height: 68px;
   }
-  
+
   .header-logo span {
     font-size: 16px;
   }
-  
+
   .header-mobile-menu {
     padding: 20px;
     width: 95%;
   }
-  
+
   .header-mobile-link {
     font-size: 16px;
   }
-  
+
   .header-mobile-cta {
     font-size: 15px;
     padding: 11px 20px;
@@ -390,7 +390,8 @@
 .simple-carousel-wrapper {
   position: relative;
   width: 100%;
-  padding: 0 60px; /* Space for arrows on desktop */
+  padding: 0 60px;
+  /* Space for arrows on desktop */
 }
 
 .simple-carousel-overflow {
@@ -462,9 +463,10 @@
 /* Mobile Responsive Arrow Positioning */
 @media (max-width: 1024px) {
   .simple-carousel-wrapper {
-    padding: 0 56px; /* Slightly less padding on tablet */
+    padding: 0 56px;
+    /* Slightly less padding on tablet */
   }
-  
+
   .simple-carousel-arrow {
     width: 44px;
     height: 44px;
@@ -473,17 +475,18 @@
 
 @media (max-width: 768px) {
   .simple-carousel-wrapper {
-    padding: 0 16px; /* Minimal padding on mobile */
+    padding: 0 16px;
+    /* Minimal padding on mobile */
   }
-  
+
   .simple-carousel-arrow-left {
     left: 8px;
   }
-  
+
   .simple-carousel-arrow-right {
     right: 8px;
   }
-  
+
   .simple-carousel-arrow {
     width: 40px;
     height: 40px;
@@ -496,15 +499,15 @@
   .simple-carousel-wrapper {
     padding: 0 8px;
   }
-  
+
   .simple-carousel-arrow-left {
     left: 4px;
   }
-  
+
   .simple-carousel-arrow-right {
     right: 4px;
   }
-  
+
   .simple-carousel-arrow {
     width: 36px;
     height: 36px;
@@ -520,7 +523,8 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   height: 100%;
-  min-height: 280px; /* Minimum height for consistency */
+  min-height: 280px;
+  /* Minimum height for consistency */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -543,7 +547,8 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 100%;
-  min-height: 260px; /* Minimum height for consistency */
+  min-height: 260px;
+  /* Minimum height for consistency */
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
@@ -573,10 +578,13 @@
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  padding: 12px 16px;
+  padding: 16px 24px;
+  /* Increased padding for pill shape */
   border: none;
   border-radius: 9999px;
+  /* Pill shape */
   background: linear-gradient(120deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%);
+  /* Gradient from the image */
   color: white;
   text-decoration: none;
   cursor: pointer;
@@ -586,17 +594,18 @@
   min-width: 44px;
   text-align: center;
   letter-spacing: -0.01em;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  /* Adjusted box shadow */
 }
 
 .gradient-button:hover {
   background: linear-gradient(120deg, #5856eb 0%, #7c3aed 50%, #9333ea 100%);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  transform: translateY(-2px);
 }
 
 .gradient-button:focus {
-  outline: 2px solid rgba(139, 92, 246, 0.5);
+  outline: 2px solid rgba(139, 92, 246, 0.7);
   outline-offset: 2px;
 }
 
@@ -707,9 +716,69 @@
   background-color: #6d28d9;
 }
 
+.pricing-button:focus {
+  outline: 2px solid #a78bfa;
+  outline-offset: 2px;
+}
+
 /* Hero Section Optimizations */
+.lifetime-access-message {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  margin-bottom: 24px; /* Adjust as needed for spacing */
+  font-size: 1rem; /* Adjust font size as needed */
+  font-weight: 600;
+  color: #ffffff;
+  padding: 12px 24px; /* Adjust padding for pill shape */
+  border-radius: 9999px; /* Pill shape */
+  overflow: hidden; /* Hide overflow of the pseudo-element */
+  isolation: isolate; /* Create a new stacking context */
+  background-color: #1a1a1a; /* Dark background color */
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4); /* Adjusted box shadow */
+  border: 2px solid rgba(139, 92, 246, 0.5); /* Purple border */
+}
+/* Responsive adjustments for the lifetime access message */
+@media (max-width: 767px) {
+  .lifetime-access-message {
+    padding: 8px 16px; /* Decrease padding for smaller screens */
+ font-size: 0.9rem; /* Decrease font size for smaller screens */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .lifetime-access-message {
+    padding: 10px 20px; /* Adjust padding for tablets */
+ font-size: 0.95rem; /* Slightly decrease font size for tablets */
+  }
+}
+
 .hero-content {
   animation: none;
+}
+
+.free-trial-message {
+  display: block;
+  /* Ensure it takes up its own line */
+  text-align: center;
+  /* Center the text */
+  margin-top: 8px;
+  /* Add some space above the text */
+  font-size: 0.875rem;
+  /* Equivalent to text-sm */
+  color: #a78bfa;
+  /* A bright purple color for visibility */
+  text-shadow: 0 0 4px rgba(167, 139, 250, 0.5),
+    /* Subtle glow effect */
+    0 0 8px rgba(167, 139, 250, 0.3);
+  transition: text-shadow 0.3s ease-in-out;
+  /* Smooth transition for glow */
+}
+
+.free-trial-message:hover {
+  text-shadow: 0 0 6px rgba(167, 139, 250, 0.7),
+    /* Slightly stronger glow on hover */
+    0 0 12px rgba(167, 139, 250, 0.5);
 }
 
 .hero-input {
@@ -742,7 +811,7 @@
     line-height: 1.3;
     letter-spacing: -0.025em;
   }
-  
+
   .gradient-text.italic {
     transform: skew(-1deg, 0deg);
     margin: 0 0.1rem;
@@ -751,13 +820,13 @@
     line-height: 1.3;
     letter-spacing: 0.015em;
   }
-  
+
   .text-container {
     gap: 0.3rem;
     line-height: 1.3;
     padding: 0.3em 0.5em;
   }
-  
+
   .hero-line {
     margin: 0.3rem 0;
     line-height: 1.1;
@@ -785,7 +854,7 @@
     line-height: 1.3;
     letter-spacing: -0.02em;
   }
-  
+
   .gradient-text.italic {
     transform: skew(-1.5deg, 0deg);
     margin: 0 0.15rem;
@@ -794,13 +863,13 @@
     line-height: 1.3;
     letter-spacing: 0.02em;
   }
-  
+
   .text-container {
     gap: 0.4rem;
     line-height: 1.3;
     padding: 0.4em 0.6em;
   }
-  
+
   .hero-line {
     margin: 0.5rem 0;
     line-height: 1.15;
@@ -828,230 +897,19 @@
     line-height: 1.3;
     letter-spacing: -0.015em;
   }
-  
+
   .gradient-text.italic {
     transform: skew(-2deg, 0deg);
     margin: 0 0.2rem;
     padding: 0.2em 0.3em;
-    font-size: clamp(2.8rem, 3.5vw, 4.5rem);
+    font-size: clamp(2.8rem, 3.5vw, 4.5rem); /* Completed font-size */
     line-height: 1.3;
     letter-spacing: 0.025em;
   }
-  
+
   .text-container {
     gap: 0.6rem;
     line-height: 1.3;
-    padding: 0.5em 0.8em;
+    padding: 0.5em 0.8em; /* Completed padding */
   }
-  
-  .hero-line {
-    margin: 0.6rem 0;
-    line-height: 1.2;
-  }
-
-  .gradient-button {
-    font-size: 16px;
-    padding: 12px 16px;
-  }
-
-  .feature-card {
-    padding: 32px;
-    min-height: 280px;
-  }
-
-  .testimonial-card {
-    padding: 24px;
-    min-height: 260px;
-  }
-}
-
-/* Font loading optimization */
-@supports (font-display: swap) {
-  .gradient-text.italic {
-    font-display: swap;
-  }
-}
-
-/* Cross-browser compatibility fixes */
-@supports not (background-clip: text) {
-  .gradient-text {
-    color: #8B5CF6;
-    background: none;
-  }
-}
-
-/* Safari-specific fixes for script fonts */
-@supports (-webkit-appearance: none) {
-  .gradient-text.italic {
-    -webkit-transform: skew(-2deg, 0deg);
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-stroke: 0.5px transparent;
-  }
-}
-
-/* Firefox-specific fixes */
-@-moz-document url-prefix() {
-  .gradient-text.italic {
-    -moz-osx-font-smoothing: grayscale;
-    transform: skew(-2deg, 0deg);
-  }
-}
-
-/* Reduced Motion Support - Accessibility First */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .simple-carousel-track {
-    transition: none;
-  }
-  
-  .simple-carousel-arrow:hover {
-    transform: translateY(-50%);
-  }
-  
-  .feature-card:hover,
-  .testimonial-card:hover {
-    transform: none;
-  }
-
-  .gradient-button:hover {
-    transform: none;
-  }
-}
-
-/* Performance optimizations for off-screen content */
-section {
-  contain: layout style paint;
-}
-
-/* Optimize repaints and reflows */
-.feature-card, 
-.testimonial-card, 
-.pricing-card, 
-.simple-carousel-track,
-.simple-carousel-arrow {
-  will-change: transform, opacity;
-}
-
-/* Critical CSS for above-the-fold content */
-.hero-line, .hero-input, .hero-button {
-  display: block;
-}
-
-/* Ensure minimum tap target sizes for accessibility */
-button, a, input[type="submit"], input[type="button"] {
-  min-height: 44px;
-  min-width: 44px;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .pricing-card, 
-  .testimonial-card, 
-  .feature-card,
-  .simple-carousel-arrow {
-    border-width: 2px;
-    border-color: #ffffff;
-  }
-  
-  .cta-button, .pricing-button, .gradient-button {
-    border: 2px solid #ffffff;
-  }
-}
-
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --brand: 266 100% 50%;
-    --brand-foreground: 270 100% 98%;
-  }
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --brand: 266 70% 60%;
-    --brand-foreground: 270 100% 98%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    font-display: swap;
-    font-weight: 400;
-    line-height: 1.6;
- background: linear-gradient(to bottom, #0a0a0a, #000000);
- background-repeat: no-repeat;
-    letter-spacing: -0.01em;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-  }
-  
-  p, span, div {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    line-height: 1.6;
-    letter-spacing: -0.005em;
-  }
-  
-  button, input, select, textarea {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
-}
+} /* Closing brace for the media query */
