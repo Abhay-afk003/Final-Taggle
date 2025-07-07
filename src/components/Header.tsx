@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
+import { Link, useNavigate } from 'react-router-dom';
+
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -21,6 +23,8 @@ const Header: React.FC = () => {
 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [menuOpen]);
+
+  const navigate = useNavigate();
 
   return (
     <header className="w-full z-50 bg-transparent relative flex justify-end">
@@ -52,23 +56,19 @@ const Header: React.FC = () => {
             >
               Pricing
             </a>
-            <a 
-              href="#login" 
-              className="header-nav-link"
+            <Link to="/auth?form=login" className="header-nav-link"
             >
               Login
-            </a>
+            </Link>
           </div>
         </nav>
 
         {/* Right Section - CTA Button (Desktop) */}
         <div className="header-cta">
-          <a
-            href="#get-started"
-            className="gradient-button header-cta-button"
-          >
+          <Link to="/auth" className="gradient-button header-cta-button"
+ to="/auth?form=register">
             Get Started
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Button (Aligned to the right) */}
@@ -124,20 +124,25 @@ const Header: React.FC = () => {
                 >
                   Pricing
                 </a>
-                <a 
-                  href="#login" 
-                  onClick={() => setMenuOpen(false)} 
+                <Link to="/auth?form=login"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    // No need for navigate here, Link handles navigation
+                  }}
                   className="header-mobile-link"
                 >
                   Login
-                </a>
-                <a
-                  href="#get-started"
+                </Link>
+                <Link
+                  to="/auth?form=register"
                   className="gradient-button header-mobile-cta"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => { // Keep onClick for mobile menu
+                    setMenuOpen(false);
+                    navigate('/auth');
+                  }}
                 >
                   Get Started
-                </a>
+                </Link>
               </nav>
             </motion.div>
           </motion.div>

@@ -1,16 +1,24 @@
+import React, { useEffect, useState } from 'react'; // Import React, useEffect, and useState
 import Header from './components/Header';
 import Hero from './components/Hero';
+import { onAuthStateChanged } from 'firebase/auth';
+import { getRedirectResult } from 'firebase/auth'; // Import getRedirectResult
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
 import Aurora from './backgrounds/Aurora/Aurora';
 import CtaSection from './components/CtaSection';
 import Footer from './components/Footer';
+import AuthPage from './pages/AuthPage'; // Import AuthPage
+import Dashboard from './pages/Dashboard';
+import { auth } from "./lib/firebase";
 import './global.css';
-import { useState } from 'react';
-import toast from 'react-hot-toast';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import necessary routing components
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null); // Using null for no authenticated user
+
   const termsAndConditionsText = `
 Effective Date: June 25, 2025
 
@@ -65,82 +73,87 @@ For data requests, contact taggle003@gmail.com.
 We may update this policy. Changes will be reflected on this page with a revised effective date.
 `;
 
-  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
-  const [showTermsAndConditions, setShowTermsAndConditions] = useState(false);
 
-  const handleShowPrivacyPolicy = () => {
-    setShowPrivacyPolicy(true);
-    setShowTermsAndConditions(false);
+  // PrivateRoute component to protect routes
+  const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const navigate = useNavigate();
+    useEffect(() => {
+      if (!user && !isLoading) {
+        navigate('/auth');
+      }
+    }, [user, isLoading, navigate]);
+    return <>{children}</>;
   };
-
-  const handleShowTermsAndConditions = () => {
-    setShowTermsAndConditions(true);
-    setShowPrivacyPolicy(false);
-  };
-
-  const handleGoBack = () => {
-    setShowPrivacyPolicy(false);
-    setShowTermsAndConditions(false);
-  };
-
   return (
-    <div className="relative w-full min-h-screen bg-black">
-      {showPrivacyPolicy || showTermsAndConditions ? (
-        <div className="min-h-screen bg-black text-white p-8">
-          <button
-            onClick={handleGoBack}
-            className="mb-6 px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-colors duration-300"
-          >
-            ← Back to Home
-          </button>
-          <div className="max-w-4xl mx-auto">
-            {showPrivacyPolicy && (
-              <div>
+    <Router>
+      <div className="relative w-full min-h-screen bg-black">
+        <Aurora
+          className="fixed top-0 left-0 w-full h-full -z-10"
+          colorStops={["#6366F1", "#8B5CF6", "#6366F1"]}
+        /> {/* Aurora background outside of Routes */}
+
+        <Routes>
+          <Route path="/" element={
+            <>
+              {/* Header */}
+              <Header />
+
+              {/* Hero Section */}
+              <Hero />
+
+              {/* Main Content */}
+              <main>
+                <Features />
+                <Pricing />
+                <Testimonials />
+              </main>
+
+              {/* CTA Section */}
+              <CtaSection />
+
+              {/* Footer */}
+              <Footer onShowPrivacy={() => { /* Link to privacy route */ }} onShowTerms={() => { /* Link to terms route */ }} /> {/* Placeholder handlers for now */}
+            </>
+          } />
+
+          <Route path="/auth" element={<AuthPage />} />
+
+          {/* Route for Dashboard */}
+          <Route path="/dashboard" element={
+            <PrivateRoute><Dashboard /></PrivateRoute>
+          } />
+
+          {/* Routes for Privacy Policy and Terms and Conditions */}
+          <Route path="/privacy" element={
+            <div className="min-h-screen bg-black text-white p-8">
+              <button onClick={() => window.history.back()} className="mb-6 px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-colors duration-300">
+                ← Back
+              </button>
+              <div className="max-w-4xl mx-auto">
                 <h1 className="text-4xl mb-8 gradient-text">Privacy Policy</h1>
                 <div className="prose prose-invert max-w-none">
                   <pre className="whitespace-pre-wrap text-gray-300 text-base leading-relaxed">{privacyPolicyText}</pre>
                 </div>
               </div>
-            )}
-            {showTermsAndConditions && (
-              <div>
+            </div>
+          } />
+
+          <Route path="/terms" element={
+            <div className="min-h-screen bg-black text-white p-8">
+              <button onClick={() => window.history.back()} className="mb-6 px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition-colors duration-300">
+                ← Back
+              </button>
+              <div className="max-w-4xl mx-auto">
                 <h1 className="text-4xl mb-8 gradient-text">Terms & Conditions</h1>
                 <div className="prose prose-invert max-w-none">
                   <pre className="whitespace-pre-wrap text-gray-300 text-base leading-relaxed">{termsAndConditionsText}</pre>
                 </div>
               </div>
-            )}
-          </div>
-        </div>
-      ) : (
-        <>
-          {/* Background Aurora */}
-          <Aurora
-            className="fixed top-0 left-0 w-full h-full -z-10"
-            colorStops={["#6366F1", "#8B5CF6", "#6366F1"]}
-          />
-          
-          {/* Header */}
-          <Header />
-
-          {/* Hero Section */}
-          <Hero />
-
-          {/* Main Content */}
-          <main>
-            <Features />
-            <Pricing />
-            <Testimonials />
-          </main>
-
-          {/* CTA Section */}
-          <CtaSection />
-
-          {/* Footer */}
-          <Footer onShowPrivacy={handleShowPrivacyPolicy} onShowTerms={handleShowTermsAndConditions} />
-        </>
-      )}
-    </div>
+            </div>
+          } />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
