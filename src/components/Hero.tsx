@@ -8,7 +8,7 @@ interface HeroProps {
   children?: React.ReactNode;
 }
 
-const BASE_WAITLIST_COUNT = 49; // You can adjust this base number
+const BASE_WAITLIST_COUNT = 93; // You can adjust this base number
 
 const Hero: React.FC<HeroProps> = ({ children }) => {
  const [email, setEmail] = useState('');
