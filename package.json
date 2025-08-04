@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "dev": "concurrently \"npm run --prefix Final-Taggle dev\" \"npm run --prefix backend start\""
+  },
+  "dependencies": {
+    "@types/yargs": "^17.0.33",
+    "concurrently": "^9.2.0",
+    "cors": "^2.8.5",
+    "d3-geo": "^3.1.1",
+    "dotenv": "^17.2.0",
+    "react-icons": "^5.5.0",
+    "react-simple-maps": "^3.0.0",
+    "react-spring": "^10.0.1",
+    "serpapi": "^2.1.0"
+  }
+}
