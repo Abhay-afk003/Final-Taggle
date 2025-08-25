@@ -1,0 +1,5 @@
+toml
+[build]
+  base = "Final-Taggle/"
+  command = "npm run build"
+  publish = "dist"
